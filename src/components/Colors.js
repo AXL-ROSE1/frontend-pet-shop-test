@@ -5,10 +5,8 @@ export default class Colors extends React.Component {
 
   state = {
     colors: "no colors information",
-    selected_color: "no selected color",
-    selected_color_data: "no color data yet"
+    selected_color: "no selected color"
   }
-
 
   componentDidMount() {
     axios.get("https://pokeapi.co/api/v2/pokemon-color")
@@ -18,11 +16,17 @@ export default class Colors extends React.Component {
       })
     })
   }
+
+  onSelectChanged(value) {
+    this.setState({
+      selected_color: value
+    });
+  }
   
-  render() {
+  render() {    
     if(Array.isArray(this.state.colors["results"]) == true) {
       return(
-        <select id="colorsSelect">
+        <select id="colorsSelect" onChange={this.onSelectChanged.bind(this)}>
           { this.state.colors["results"].map (item => (<option value={item.name}>{item.name}</option>)) }
         </select>
       )
