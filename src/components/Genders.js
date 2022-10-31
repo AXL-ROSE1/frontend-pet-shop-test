@@ -20,7 +20,7 @@ export default class Genders extends React.Component {
   render() {
     if(Array.isArray(this.state.genders["results"]) == true) {
       return(
-        <select name="genderSelect">
+        <select id="genderSelect">
           { this.state.genders["results"].map (item => (<option value={item.name}>{item.name}</option>)) }
         </select>
       )

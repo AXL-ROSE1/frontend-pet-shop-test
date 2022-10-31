@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import logo from './logo.svg';
 import './css/mainStyle.css';
@@ -7,6 +7,9 @@ import Colors from './components/Colors.js';
 import Genders from './components/Genders.js';
 
 function App() {
+  const [query_color, setColor] = useState("no color data to query yet");
+  const [query_gender, setGender] = useState("no gender data to query yet");
+
   return (
     <div className="App">
         <img src={logo} className="App-logo" alt="logo" />
@@ -30,8 +33,10 @@ function App() {
             </tr>
             <tr>
               <td>
-                <button name="reset" class="center">Restablecer</button>
-                <button name="filter" class="center">Filtrar</button>
+                <p>{query_color}</p>
+                <p>{query_gender}</p>
+                <button name="reset" class="center" onClick={() => (setColor('no color data to query yet'), setGender("no gender data to query yet"))}>Restablecer</button>
+                <button name="filter" class="center" onClick={() => (setColor(document.getElementById('colorsSelect').value), setGender(document.getElementById('genderSelect').value))}>Filtrar</button>
               </td>
             </tr>
           </table>
